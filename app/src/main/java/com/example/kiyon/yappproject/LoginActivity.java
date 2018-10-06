@@ -9,10 +9,14 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 
 import com.kakao.auth.ISessionCallback;
 import com.kakao.auth.Session;
 import com.kakao.network.ErrorResult;
+import com.kakao.usermgmt.LoginButton;
 import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.LogoutResponseCallback;
 import com.kakao.usermgmt.callback.MeResponseCallback;
@@ -25,6 +29,12 @@ import java.security.NoSuchAlgorithmException;
 
 public class LoginActivity extends AppCompatActivity {
     SessionCallback callback;
+
+    private ImageView btn_custom_login;
+
+    private Button btn_kakao_login;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +47,22 @@ public class LoginActivity extends AppCompatActivity {
         getHashKey();
         callback = new SessionCallback();
         Session.getCurrentSession().addCallback(callback);
+
+
+        btn_custom_login = (ImageView) findViewById(R.id.btn_custom_login);
+        btn_custom_login.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                btn_kakao_login.performClick();
+            }
+
+        });
+        btn_kakao_login = (Button) findViewById(R.id.btn_kakao_login);
+        //카카오톡 버튼 클릭
+
+
+
 
 
     }
